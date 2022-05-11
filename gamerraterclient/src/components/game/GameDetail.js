@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Review } from "../review/Review";
 import { getGameById } from "./GameManager";
 
 export const GameDetail = () => {
@@ -24,7 +25,9 @@ export const GameDetail = () => {
             {
                 <section>
                     <p>
-                        Title: {game.title}<br></br>
+                        <h1>
+                            Title: {game.title}<br></br>
+                        </h1>
                     </p>
                     <p>
                         Description: {game.description}<br></br>
@@ -50,6 +53,14 @@ export const GameDetail = () => {
                             history.push(`/games/edit/${game.id}`)
                         }}>Edit</button> : ''}
                     </div>
+                    <button 
+                    onClick={() => {
+                        history.push({ pathname: `/games/${gameId}/reviews` })
+                    }}>
+                    Leave a Review!
+                    </button>
+                    <h2>Reviews</h2>
+                    <div><Review gameId={gameId} /></div>
                 </section>
 
             }
